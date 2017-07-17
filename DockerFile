@@ -3,7 +3,7 @@ MAINTAINER PixelPerfect <pixelperfectpon3@gmail.com>
 
 WORKDIR /opt/
 
-RUN apt update -y && apt upgrade -y && apt dist-upgrade -y && apt-get install wget curl -y
+RUN apt update -y 1>/dev/null && apt upgrade -y 1>/dev/null && apt dist-upgrade -y 1>/dev/null && apt-get install wget curl -y 1>/dev/null
 RUN curl -L https://raw.githubusercontent.com/iPonyRadio/fivem-server-docker/master/install-mono.sh | sh
 RUN curl -L https://raw.githubusercontent.com/iPonyRadio/fivem-server-docker/master/install-fivem.sh | sh
 
