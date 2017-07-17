@@ -1,4 +1,4 @@
-FROM mono:latest
+FROM mono:4.8
 MAINTAINER PixelPerfect <pixelperfectpon3@gmail.com>
 
 WORKDIR /opt/
@@ -13,6 +13,9 @@ RUN echo $TZ > /etc/timezone && \
     ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && \
     dpkg-reconfigure -f noninteractive tzdata && \
     apt-get clean
+EXPOSE 30120
+EXPOSE 30120/udp
+
 
 VOLUME ["/opt/config/"]
 
