@@ -3,8 +3,18 @@ MAINTAINER PixelPerfect <pixelperfectpon3@gmail.com>
 
 WORKDIR /opt/
 
-RUN apt update -y 1>/dev/null && apt upgrade -y 1>/dev/null && apt dist-upgrade -y 1>/dev/null && apt-get install wget curl -y 1>/dev/null
+RUN apt update -y 1>/dev/null && apt upgrade -y 1>/dev/null && apt dist-upgrade -y 1>/dev/null && apt-get install wget curl tzdata -y 1>/dev/null
 RUN curl -L https://raw.githubusercontent.com/iPonyRadio/fivem-server-docker/master/install-mono.sh | sh
 RUN curl -L https://raw.githubusercontent.com/iPonyRadio/fivem-server-docker/master/install-fivem.sh | sh
+RUN mkdir /opt/config && cp /opt/cfx-server/citmp-server.yml /opt/config
+RUN curl -O https://raw.githubusercontent.com/iPonyRadio/fivem-server-docker/master/start.sh
+ENV TZ 'UTC'
+RUN echo $TZ > /etc/timezone && \
+    rm /etc/localtime && \
+    ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && \
+    dpkg-reconfigure -f noninteractive tzdata && \
+    apt-get clean
 
-CMD ["/opt/cfx-server/run.sh"]
+VOLUME ["/opt/config/"]
+
+CMD ["/opt/start.sh"]
