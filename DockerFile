@@ -7,7 +7,7 @@ RUN apt update -y 1>/dev/null && apt upgrade -y 1>/dev/null && apt dist-upgrade 
 RUN curl -L https://raw.githubusercontent.com/iPonyRadio/fivem-server-docker/master/install-mono.sh | sh
 RUN curl -L https://raw.githubusercontent.com/iPonyRadio/fivem-server-docker/master/install-fivem.sh | sh
 RUN mkdir /opt/config && cp /opt/cfx-server/citmp-server.yml /opt/config
-RUN curl -O https://raw.githubusercontent.com/iPonyRadio/fivem-server-docker/master/start.sh
+RUN curl -O https://raw.githubusercontent.com/iPonyRadio/fivem-server-docker/master/start.sh && chmod a+x /opt/start.sh
 ENV TZ 'UTC'
 RUN echo $TZ > /etc/timezone && \
     rm /etc/localtime && \
