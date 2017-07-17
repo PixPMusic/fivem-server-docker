@@ -3,7 +3,7 @@ MAINTAINER PixelPerfect <pixelperfectpon3@gmail.com>
 
 WORKDIR /opt/
 
-RUN apt update -y 1>/dev/null && apt upgrade -y 1>/dev/null && apt dist-upgrade -y 1>/dev/null && apt-get install wget curl tzdata -y 1>/dev/null
+RUN apt-get update -y 1>/dev/null && apt-get upgrade -y 1>/dev/null && apt-get dist-upgrade -y 1>/dev/null && apt-get install wget curl tzdata -y 1>/dev/null
 RUN curl -L https://raw.githubusercontent.com/iPonyRadio/fivem-server-docker/master/install-fivem.sh | sh
 RUN mkdir /opt/config
 RUN curl -O https://raw.githubusercontent.com/iPonyRadio/fivem-server-docker/master/start.sh && chmod a+x /opt/start.sh
