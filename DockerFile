@@ -1,22 +1,2 @@
-FROM mono:4.8
-MAINTAINER PixelPerfect <pixelperfectpon3@gmail.com>
-
-WORKDIR /opt/
-
-RUN apt-get update -y 1>/dev/null && apt-get upgrade -y 1>/dev/null && apt-get dist-upgrade -y 1>/dev/null && apt-get install wget curl tzdata -y 1>/dev/null
-RUN curl -L https://raw.githubusercontent.com/iPonyRadio/fivem-server-docker/master/install-fivem.sh | sh
-RUN mkdir /opt/config
-RUN curl -O https://raw.githubusercontent.com/iPonyRadio/fivem-server-docker/master/start.sh && chmod a+x /opt/start.sh
-ENV TZ 'UTC'
-RUN echo $TZ > /etc/timezone && \
-    rm /etc/localtime && \
-    ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && \
-    dpkg-reconfigure -f noninteractive tzdata && \
-    apt-get clean
-EXPOSE 30120
-EXPOSE 30120/udp
-
-
-VOLUME ["/opt/config/"]
-
-CMD ["/opt/start.sh"]
+FROM citizenfx/server:dev
+RUN sed -i 's/"svadhesive",//g' /opt/cfx-server/components.json
