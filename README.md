@@ -8,4 +8,4 @@ Also, map port 30120 and 30120/udp
 
 For my own sake,
 
-```docker create --name=fivem -p 30120:30120 -p 30120:30120/udp -v /mnt/usr/appdata/fivem:/opt/config pixelperfect/fivem:master```
+    docker create --name=fivem -p 30120:30120 -p 30120:30120/udp -v /mnt/usr/appdata/fivem:/opt/config pixelperfect/fivem:master
